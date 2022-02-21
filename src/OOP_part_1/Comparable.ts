@@ -4,5 +4,7 @@ export interface Comparable<T> {
     name: string;
     weight: number;
 
+    use(): void;
     compareTo(other: T): number;
+    toString(): string;
 }
