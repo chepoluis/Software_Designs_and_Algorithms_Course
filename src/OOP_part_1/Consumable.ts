@@ -31,7 +31,7 @@ export class Consumable extends Item {
     }
 
     public isConsumed(): boolean {
-        return true;
+        return this._consumed;
     }
 
     set consumed(consumed: boolean) {

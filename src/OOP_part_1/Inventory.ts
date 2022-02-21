@@ -1,5 +1,5 @@
 import { Item } from './Item';
-import { ItemComparator } from './ItemComparator';
+import { ItemComparator } from './interfaces/ItemComparator';
 
 export class Inventory {
     static instance: Inventory;
@@ -17,8 +17,6 @@ export class Inventory {
 
     public addItem(item: Item): void {
         this._items = [...this._items, item];
-
-        console.log(this._items)
     }
     
     public sort(comparator?: ItemComparator): void {
