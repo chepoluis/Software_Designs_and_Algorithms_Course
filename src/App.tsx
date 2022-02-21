@@ -8,14 +8,24 @@ const c1 = new Consumable('Bread', 2, 4, false);
 // console.log(c1.use());
 // console.log(c1.use());
 
-const weapon1 = new Weapon('Raygun', 122, 34);
-const weapon2 = new Weapon('Raygun2', 1, 0.336);
-const weapon3 = new Weapon('Sniper', 45, 334);
+const weapon1 = new Weapon(5, 10, 'Raygun', 122, 34);
+const weapon2 = new Weapon(3, 15, 'Raygun2', 1, 0.336);
+const weapon3 = new Weapon(10, 15,'Sniper', 45, 334);
+const hammer = new Weapon(30.4219, 0.2093, 'Hammer', 300, 2.032);
 
-const invetory = Inventory.callInventory();
-console.log(invetory.toString());
-invetory.sort();
-console.log(invetory.toString());
+console.log(hammer.toString());
+console.log(hammer.use());
+console.log(hammer.use());
+console.log(hammer.use());
+console.log(hammer.use());
+console.log(hammer.use());
+console.log(hammer.use());
+console.log(hammer.use());
+
+console.log(hammer.toString());
+
+
+// const invetory = Inventory.callInventory();
 
 // console.log( weapon2.compareTo(weapon3));
 // console.log(weapon1);

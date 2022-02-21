@@ -64,7 +64,7 @@ export abstract class Item implements Comparable<Item> {
     }
 
     get weight(): number {
-        return this._weight;
+        return Number(this._weight.toFixed(2));
     }
 
     set weight(weight: number) {
