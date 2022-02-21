@@ -1,4 +1,5 @@
 import { Comparable } from './Comparable';
+import { Inventory } from './Inventory';
 
 let id = 0;
 
@@ -20,6 +21,8 @@ export abstract class Item implements Comparable<Item> {
         this._weight = weight;
 
         Item.numberOfItems++;
+        
+        Inventory.callInventory().addItem(this);
     }
 
     public use(): void {
@@ -27,10 +30,13 @@ export abstract class Item implements Comparable<Item> {
     }
 
     public compareTo(other: Item): number {
-        console.log('this._name ', this._name)
-        console.log('other._name ', other._name)
 
-        return 1;
+        if (this._value === other._value)
+            return this._name.localeCompare(other._name); // TO DO: Improve
+        else if (this._value > other._value)
+            return 1;
+        
+        return -1;
     }
 
     public toString(): string {
