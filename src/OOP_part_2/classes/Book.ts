@@ -5,9 +5,9 @@ export class Book extends Item {
     constructor(
         private _title: string,
         private _author: string,
-        _pages: Pages
+        pages: Pages
     ) {
-        super(_pages);
+        super(pages);
     }
 
     get title() {
@@ -27,6 +27,6 @@ export class Book extends Item {
     }
 
     toString(position: number): string {
-        return `Book: ${ this._title } by ${ this._author } with number of pages: ${ this._pages.pages.length }, here is page with text #${this.counter} and it's material is ${ this._pages.pages[position].pageMaterial }`;
+        return `Book: ${ this._title } by ${ this._author } with number of pages: ${ this._pages.pages.length }, here is page ${ this._pages.pages[position].pageType } #${this.counter} and it's material is ${ this._pages.pages[position].pageMaterial }`;
     }
 }
