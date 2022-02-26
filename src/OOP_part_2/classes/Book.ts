@@ -1,32 +1,13 @@
 import { Pages } from "./Pages";
-export class Book implements Iterable<any>{
-    private done: boolean = false;
-    private counter: number = 0;
+import { Item } from './Item';
+export class Book extends Item {
 
     constructor(
         private _title: string,
         private _author: string,
-        private _pages: Pages
-    ) { }
-
-    [Symbol.iterator]() {
-        this.counter = 0;
-
-        return {
-            next: () => {
-                if (this.counter === this._pages.pages.length) {
-                    return {
-                        done: true,
-                        value: undefined
-                    }
-                }
-                
-                return {
-                    done: false,
-                    value: this.customToString(this.counter++)
-                }
-            }
-        }
+        _pages: Pages
+    ) {
+        super(_pages);
     }
 
     get title() {
@@ -45,11 +26,7 @@ export class Book implements Iterable<any>{
         this._author = author;
     }
 
-    public customToString(position: number): string {
+    toString(position: number): string {
         return `Book: ${ this._title } by ${ this._author } with number of pages: ${ this._pages.pages.length }, here is page with text #${this.counter} and it's material is ${ this._pages.pages[position].pageMaterial }`;
-    }
-
-    public toString(): string {
-        return `Book: ${ this._title } by ${ this._author } with number of pages: ${ this._pages.pages.length }`;
     }
 }
