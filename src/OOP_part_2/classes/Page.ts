@@ -18,7 +18,7 @@ export class Page {
         return this._pageMaterial;
     }
 
-    public toString(): string {
+    toString(): string {
         return `here is page ${ this._pageType } #${ this._pageNumber } and it's material is ${ this._pageMaterial }`;
     }
 }
