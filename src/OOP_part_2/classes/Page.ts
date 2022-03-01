@@ -1,9 +1,9 @@
 export class Page {
 
     constructor(
-        public _pageNumber: number,
-        public _pageType: string,
-        public _pageMaterial: string
+        private _pageNumber: number,
+        private _pageType: string,
+        private _pageMaterial: string
     ) { }
 
     get pageNumber(): number {
