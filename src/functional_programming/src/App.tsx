@@ -6,16 +6,16 @@ import { getImages, getUsers, getAccounts } from './mocks/api';
 
 import { dataConverter } from './selectors/dataConverter';
 
-import styles from './App.module.scss';
-
 import type { Row } from './components';
 import type { Image, User, Account } from '../types';
+
+import styles from './App.module.scss';
 
 function App() {
   const [data, setData] = useState<Row[]>(undefined);
 
   useEffect(() => {
-    // fetching data from API
+    // Fetching data from API
     Promise.all([getImages(), getUsers(), getAccounts()]).then(
       ([images, users, accounts]: [Image[], User[], Account[]]) => {
 
