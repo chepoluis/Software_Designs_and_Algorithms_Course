@@ -5,26 +5,27 @@ import SearchIcon from '@mui/icons-material/Search';
 
 import styles from './Search.module.scss';
 
-interface SearchProps {
-  store?: {};
-  updateStore?: (val) => void;
-}
+// interface SearchProps {
+//   store?: {};
+//   updateStore?: (val) => void;
+// }
 
 // OR
 
-//interface SearchProps {
-//  selected?: {};
-//  updateSelected?: (val) => void;
-//}
-
-// OR store can be global
+interface SearchProps {
+  selected?: {};
+  updateSelected?: (val: string) => void;
+}
 
 export function Search(props: SearchProps) {
+  const { updateSelected } = props;
+
   const [searchedValue, setSearchedValue] = useState<string>('');
 
   const onChange = (value) => {
-    console.log(value); // for debugging
     setSearchedValue(value);
+
+    updateSelected(value);
   }
 
   return (
