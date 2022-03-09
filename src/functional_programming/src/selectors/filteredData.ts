@@ -9,7 +9,7 @@ export interface options {
 }
 
 export const filteredData = ( data: Row[], options: options ) => {
-    let newData = []; // TODO: use const
+    let newData = [];
     const searchByArray = searchBy(options.search_by, data);
     
     if (options.without_posts) {
