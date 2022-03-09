@@ -9,33 +9,72 @@ export interface options {
 }
 
 export const filteredData = ( data: Row[], options: options ) => {
-    let newData = data ? [...data] : [];
+    let newData = []; // TODO: use const
+    const searchByArray = searchBy(options.search_by, data);
     
     if (options.without_posts) {
-        newData = [...newData.filter(user => user.posts === 0)];
+        newData = [...newData, ...withoutPost(data)];
     }
 
     if (options.more_than_100_posts) {
-        newData = [...newData.filter(user => user.posts >= 100)];
+        newData = [...newData, ...moreThan100Posts(data)];
     }
     
+    if (options.search_by !== '') {
+        newData = [...newData, ...searchByArray];
+    }
+
     if (options.sort_desc) {
-        newData = [...newData.sort((a, b) => b.lastPayments - a.lastPayments)];
+        if (newData.length === 0) {
+            data = sortDesc(data);
+        } else {
+            newData = sortDesc(newData);
+        }
     } 
 
     if (options.sort_asc) {
-        newData = [...newData.sort((a, b) => a.lastPayments - b.lastPayments)];
+        if (newData.length === 0) {
+            data = sortAsc(data);
+        } else {
+            newData = sortAsc(newData);
+        }
     } 
     
-    if (options.search_by !== '') {
-        options.search_by = options.search_by.toLocaleLowerCase();
+    return newData.length === 0 && searchByArray.length !== 0 
+        ? data 
+        : eliminateDuplicatedObjects(newData);
+}
 
-        newData = newData.filter(hero => ( 
-          hero.country.toLocaleLowerCase().includes(options.search_by)
-          || hero.name.toLocaleLowerCase().includes(options.search_by)
-          || hero.username.toLocaleLowerCase().includes(options.search_by)
-        ));
-    }
+const withoutPost = ( data: Row[] ): Row[] => {
+    return data.filter(user => user.posts === 0);
+}
 
-    return newData;
+const moreThan100Posts = ( data: Row[] ): Row[] => {
+    return data.filter(user => user.posts >= 100);
+}
+
+const sortDesc = ( data: Row[] ): Row[] => {
+    return data.sort((a, b) => b.lastPayments - a.lastPayments);
+}
+
+const sortAsc = ( data: Row[] ): Row[] => {
+    return data.sort((a, b) => a.lastPayments - b.lastPayments);
+}
+
+const searchBy = ( optionSearch: string, data: Row[] = [] ): Row[] => {
+    optionSearch = optionSearch.toLocaleLowerCase();
+
+    return data.filter(hero => ( 
+        hero.country.toLocaleLowerCase().includes(optionSearch)
+        || hero.name.toLocaleLowerCase().includes(optionSearch)
+        || hero.username.toLocaleLowerCase().includes(optionSearch)
+    ));
+}
+
+const eliminateDuplicatedObjects = ( data: Row[] ): Row[] => {
+    return data.filter((value, index, self) =>
+        index === self.findIndex((t) => (
+            t.name === value.name
+        ))
+    )
 }

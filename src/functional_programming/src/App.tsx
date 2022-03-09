@@ -61,12 +61,14 @@ function App() {
     } else if ( val.includes('More than 100 posts') ) {
       setOptions({
         ...options,
-        more_than_100_posts: true
+        more_than_100_posts: true,
+        without_posts: false
       })
     } else if ( val.includes('Without posts') ) {
       setOptions({
         ...options,
-        without_posts: true
+        without_posts: true,
+        more_than_100_posts: false
       })
     } else {
       setOptions({
