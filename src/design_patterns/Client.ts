@@ -4,16 +4,17 @@ export class Client {
     private shipment: Shipment;
 
     constructor(
-        private toAddress: string,
+        private shipmentId: number,
         private fromAddress: string,
+        private toAddress: string,
         private toZipCode: number,
         private fromZipCode: number,
         private weight: number
     ) {
-        this.shipment = new Shipment();
+        this.shipment = new Shipment(shipmentId, toAddress, fromAddress, toZipCode, fromZipCode, weight);
     }
 
-    test() {
-        
+    ship() {
+        return this.shipment.ship();
     }
 }

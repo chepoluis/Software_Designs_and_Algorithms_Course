@@ -1,33 +1,16 @@
 // Here you can use the classes
-import { Book } from "./OOP_part_2/classes/Book";
-import { Page } from "./OOP_part_2/classes/Page";
-import { Pages } from "./OOP_part_2/classes/Pages";
+import { Client } from "./design_patterns/Client";
 
-// const p = new Pages([
-//   new Page(1, 'with text', 'simple paper'),
-//   new Page(2, 'with text', 'simple paper'),
-//   new Page(3, 'with text', 'simple paper'),
-//   new Page(4, 'with text', 'simple paper')
-// ]);
+const client = new Client(23, 'Colima', 'Jalisco', 28750, 13123, 23);
+const client2 = new Client(0, 'Jalisco', 'Colima', 23123, 78750, 32);
+// const client3 = new Client(89, 'Colima', 'Jalisco', 28750, 23123, 23);
+// const client4 = new Client(0, 'Jalisco', 'Colima', 23123, 28750, 32);
 
-// console.log(p.totalPages);
+console.log(client.ship())
+console.log(client2.ship())
 
-// p.totalPages = [new Page(5, 'with text', 'simple paper'), new Page(6, 'with text', 'simple paper')];
-
-// console.log(p.totalPages);
-
-//------------
-
-const book = new Book('Harry Potter', 'J. K. Rowling', new Pages([
-  new Page(1, 'with text', 'aaaa'),
-  new Page(2, 'with text', 'simple paper'),
-  new Page(3, 'with text', 'simple paper'),
-  new Page(4, 'with text', 'simple paper')
-]));
-
-for (let b of book) {
-  console.log(b);
-}
+// console.log(client3.ship())
+// console.log(client4.ship())
 
 function App() {
   return (
