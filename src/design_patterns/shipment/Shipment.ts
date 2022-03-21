@@ -23,7 +23,13 @@ export class Shipment {
     }
 
     public ship(): string {
-        return `Shipment ID: ${this.getShipmentID()}, From: ${this.fromAddress} - To: ${this.toAddress}, Cost: ${this.getCost()}`;
+        return `
+            Shipment with the ID ${this.getShipmentID()} will be picked up from ${this.fromZipCode} ${this.fromAddress}, and shipped to ${this.toZipCode} ${this.toAddress}
+            Cost = ${this.shipper.getCost()}
+            *MARK FRAGILE*
+            *MARK DO NOT LEAVE IF ADDRESS NOT AT HOME*
+            *MARK RETURN RECEIPT REQUESTED*
+        `;
     }
 
     public getCost(): number {

@@ -1,3 +1,4 @@
-export class Package {
+import { Shipment } from './Shipment';
+export class Package extends Shipment {
     
 }
