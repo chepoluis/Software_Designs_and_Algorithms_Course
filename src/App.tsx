@@ -1,16 +1,7 @@
 // Here you can use the classes
-import { Client } from "./design_patterns/Client";
+import { insertionSort } from "./algorithms_part_1/insertionSort";
 
-const client = new Client(23, 'Colima', 'Jalisco', 28750, 13123, 23);
-const client2 = new Client(0, 'Jalisco', 'Colima', 23123, 78750, 32);
-// const client3 = new Client(89, 'Colima', 'Jalisco', 28750, 23123, 23);
-// const client4 = new Client(0, 'Jalisco', 'Colima', 23123, 28750, 32);
-
-console.log(client.ship())
-console.log(client2.ship())
-
-// console.log(client3.ship())
-// console.log(client4.ship())
+console.log(insertionSort([3,4,2,6,56,1]))
 
 function App() {
   return (
