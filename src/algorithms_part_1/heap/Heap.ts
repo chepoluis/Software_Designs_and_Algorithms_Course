@@ -14,6 +14,10 @@ export class Heap {
         this.compare = new Comparator(comparatorFunction);
     }
 
+    public getHeapContainer() {
+        return this.heapContainer;
+    }
+
     public add(item: any): Heap {
         this.heapContainer.push(item);
         this.heapifyUp();

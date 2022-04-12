@@ -1,14 +1,5 @@
 import { MinHeap } from "./heap/MinHeap";
 import { Comparator } from "./utils/Comparator";
-// interface Iitem {
-//     priority: number;
-//     randomNumber: number
-// }
-
-
-/**
- * HACER TESTS
- */
 
 export default class PriorityQueue extends MinHeap {
     private priorities: Map<any, any>; 
@@ -24,6 +15,7 @@ export default class PriorityQueue extends MinHeap {
 
     public add(item: any, priority: number = 0): PriorityQueue {
         this.priorities.set(item, priority);
+        // this.priorities.set(priority, item);
         super.add(item);
         return this;
     }
