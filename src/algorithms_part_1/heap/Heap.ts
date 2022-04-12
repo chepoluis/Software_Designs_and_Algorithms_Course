@@ -4,14 +4,20 @@ export class Heap {
     private heapContainer: number[];
     public compare: Comparator;
 
-    constructor(comparatorFunction: Function) {
+    constructor(comparatorFunction?: Function) {
+    // constructor() {
+        if (new.target === Heap) {
+            throw new TypeError('Cannot construct Heap instance directly');
+        }
+
         this.heapContainer = [];
         this.compare = new Comparator(comparatorFunction);
     }
 
-    public add(item: number) {
+    public add(item: any): Heap {
         this.heapContainer.push(item);
-        this.heapifyUp(item);
+        this.heapifyUp();
+        return this;
     }
 
     /**
@@ -19,15 +25,22 @@ export class Heap {
      * in the heap container and lift it up until it is in the correct
      * order with respect to it's parent element
      */
-    heapifyUp(customStartIndex: number): void {
+    heapifyUp(customStartIndex?: number): void {
         let currentIndex: number = customStartIndex || this.heapContainer.length - 1;
 
         while(
             this.hasParent(currentIndex) &&
             !this.pairIsInCorrectOrder(this.parent(currentIndex), this.heapContainer[currentIndex])
         ) {
-
+            this.swap(currentIndex, this.getParentIndex(currentIndex));
+            currentIndex = this.getParentIndex(currentIndex);
         }
+    }
+
+    private swap(indexOne: number, indexTwo: number) {
+        const tmp = this.heapContainer[indexTwo];
+        this.heapContainer[indexTwo] = this.heapContainer[indexOne];
+        this.heapContainer[indexOne] = tmp;
     }
 
     private hasParent(childIndex: number): boolean {
@@ -45,4 +58,13 @@ export class Heap {
     pairIsInCorrectOrder(firstElement: number, secondElement: number): boolean {
         return this.compare.lessThanOrEqual(firstElement, secondElement);
     }
+    
+    public peek() {
+        // debugger;
+        if (this.heapContainer.length === 0) {
+            return null;
+        }
+
+        return this.heapContainer[0];
+    } 
 }
