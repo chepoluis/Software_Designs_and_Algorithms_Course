@@ -1,49 +1,17 @@
-import PriorityQueue from "./algorithms_part_1/PriorityQueue";
+import { findShortestPath } from './algorithms_part_2/dijkstra';
 
-const pq = new PriorityQueue();
+const graph = {
+	start: { A: 5, B: 2 },
+	A: { start: 1, C: 4, D: 2 },
+	B: { A: 8, D: 7 },
+	C: { D: 6, end: 3 },
+	D: { end: 1 },
+	end: {},
+};
 
-// const user1 = { name: 'Mike' };
-// const user2 = { name: 'Bill' };
-// const user3 = { name: 'Jane' };
+const shortestPath = findShortestPath(graph, 'start', 'end');
 
-const user1 = { name: 'Mike' };
-const user2 = { name: 'Bill' };
-const user3 = { name: 'Jane' };
-const user4 = { name: 'Luis' };
-
-// for (let index = 0; index < 10000; index++) {
-for (let index = 9999; index >= 0; index--) {
-// for (let index = 9; index >= 0; index--) {
-  pq.add((index + 1), index);
-}
-
-console.log(pq.peek());
-console.log(pq.getHeapContainer());
-// for (let index = 0; index < pq.getHeapContainer().length; index++) { 
-//   console.log(pq.getHeapContainer()[index]);
-// }
-
-// pq.add(user1, 1);
-// console.log(pq.peek());
-
-// pq.add(user2, 7);
-// console.log(pq.peek());
-
-// pq.add(user3, 2);
-// console.log(pq.peek());
-
-// pq.add(user4, 0);
-
-// console.log(pq);
-// console.log(pq.peek());
-
-// pq.add(user1, 1);
-// pq.add(user2, 2);
-// pq.add(user3, 0);
-
-// pq.peek();
-
-
+console.log('Result: ', shortestPath);
 
 function App() {
   return (
